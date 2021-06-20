@@ -78,6 +78,7 @@ public class StartApp {
 				if (choice == 4) {
 					view.printConferirJogo();
 					conferiJogoSena(ListSena, view, scanner);
+					continue;
 				}
 
 			}
@@ -106,6 +107,7 @@ public class StartApp {
 				if (choice == 4) {
 					view.printConferirJogo();
 					conferiJogoQuina(ListQuina, view, scanner);
+					continue;
 				}
 
 			}
@@ -134,6 +136,7 @@ public class StartApp {
 				if (choice == 4) {
 					view.printConferirJogo();
 					conferiJogoLoto(ListLoto, view, scanner);
+					continue;
 				}
 
 			}
@@ -407,7 +410,7 @@ public class StartApp {
 		DecimalFormat format = new DecimalFormat("00");
 		List<String> gameUsuario = new ArrayList<>();
 
-		for (int i = 0; i < 6; i++) {
+		for (int i = 0; i < 5; i++) {
 			int num = readInt(scanner);
 			String formatted = format.format(num);
 			gameUsuario.add(formatted);
@@ -443,7 +446,7 @@ public class StartApp {
 		DecimalFormat format = new DecimalFormat("00");
 		List<String> gameUsuario = new ArrayList<>();
 
-		for (int i = 0; i < 6; i++) {
+		for (int i = 0; i < 15; i++) {
 			int num = readInt(scanner);
 			String formatted = format.format(num);
 			gameUsuario.add(formatted);

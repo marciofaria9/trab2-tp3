@@ -31,7 +31,7 @@ public class View {
 	}
 
 	public void printJogoMega(ArrayList<Integer> jogo) {
-
+		System.out.println("Seu jogo:");
 		Collections.sort(jogo);
 
 		for (Integer a : jogo) {
@@ -43,6 +43,7 @@ public class View {
 	}
 
 	public void printJogoQuina(ArrayList<Integer> jogo) {
+		System.out.println("Seu jogo:");
 		Collections.sort(jogo);
 
 		for (Integer a : jogo) {
@@ -53,6 +54,7 @@ public class View {
 	}
 
 	public void printJogoLoto(ArrayList<Integer> jogo) {
+		System.out.println("Seu jogo:");
 
 		Collections.sort(jogo);
 
