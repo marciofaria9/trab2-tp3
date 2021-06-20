@@ -38,6 +38,7 @@ public class View {
 			System.out.print(a + " ");
 
 		}
+		System.out.println();
 
 	}
 
@@ -48,7 +49,7 @@ public class View {
 			System.out.print(a + " ");
 
 		}
-
+		System.out.println();
 	}
 
 	public void printJogoLoto(ArrayList<Integer> jogo) {
@@ -59,6 +60,23 @@ public class View {
 			System.out.print(a + " ");
 
 		}
+		System.out.println();
+	}
+
+	public void printSolicitaJogo() {
+		System.out.println("Digite seu jogo");
+	}
+
+	public void printConferirJogo() {
+
+		System.out.println("Conferir jogo:");
+
+	}
+
+	public void printMsgAcertos(String idx, String date, int quantidade) {
+
+		System.out.println(
+				"No jogo de número " + idx + " do dia " + date + " você teria acertado " + quantidade + " números!");
 
 	}
 

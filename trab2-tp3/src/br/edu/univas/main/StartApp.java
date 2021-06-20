@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -57,6 +57,10 @@ public class StartApp {
 			if (choice == 1) { // mega
 				view.printSubMenu();
 				choice = readInt(scanner);
+				if (choice != 1 && choice != 2 && choice != 3 && choice != 4) {
+					System.out.println("Digite um número válido!\n");
+					continue;
+				}
 
 				if (choice == 1) {
 
@@ -72,7 +76,8 @@ public class StartApp {
 				}
 
 				if (choice == 4) {
-
+					view.printConferirJogo();
+					conferiJogoSena(ListSena, view, scanner);
 				}
 
 			}
@@ -80,6 +85,10 @@ public class StartApp {
 			if (choice == 2) { // quina
 				view.printSubMenu();
 				choice = readInt(scanner);
+				if (choice != 1 && choice != 2 && choice != 3 && choice != 4) {
+					System.out.println("Digite um número válido!\n");
+					continue;
+				}
 
 				if (choice == 1) {
 
@@ -95,7 +104,8 @@ public class StartApp {
 				}
 
 				if (choice == 4) {
-
+					view.printConferirJogo();
+					conferiJogoQuina(ListQuina, view, scanner);
 				}
 
 			}
@@ -103,6 +113,10 @@ public class StartApp {
 			if (choice == 3) { // loto
 				view.printSubMenu();
 				choice = readInt(scanner);
+				if (choice != 1 && choice != 2 && choice != 3 && choice != 4) {
+					System.out.println("Digite um número válido!\n");
+					continue;
+				}
 
 				if (choice == 1) {
 
@@ -118,7 +132,8 @@ public class StartApp {
 				}
 
 				if (choice == 4) {
-
+					view.printConferirJogo();
+					conferiJogoLoto(ListLoto, view, scanner);
 				}
 
 			}
@@ -346,6 +361,133 @@ public class StartApp {
 		}
 
 		view.printJogoQuina(jogo);
+
+	}
+
+	public void conferiJogoSena(List<Jogo> listSena, View view, Scanner scanner) {
+
+		int total = 6;
+
+		view.printSolicitaJogo();
+		DecimalFormat format = new DecimalFormat("00");
+		List<String> gameUsuario = new ArrayList<>();
+
+		for (int i = 0; i < 6; i++) {
+			int num = readInt(scanner);
+			String formatted = format.format(num);
+			gameUsuario.add(formatted);
+
+		}
+
+		for (Jogo jogo : listSena) {
+
+			int contador = 0;
+
+			contador = counter(jogo, gameUsuario, contador, total);
+
+			if (contador >= 4) {
+
+				String idx = jogo.getIdx();
+				String date = jogo.getDate();
+
+				view.printMsgAcertos(idx, date, contador);
+
+			}
+
+			contador = 0;
+
+		}
+
+	}
+
+	public void conferiJogoQuina(List<Jogo> listQuina, View view, Scanner scanner) {
+		int total = 5;
+
+		view.printSolicitaJogo();
+		DecimalFormat format = new DecimalFormat("00");
+		List<String> gameUsuario = new ArrayList<>();
+
+		for (int i = 0; i < 6; i++) {
+			int num = readInt(scanner);
+			String formatted = format.format(num);
+			gameUsuario.add(formatted);
+
+		}
+
+		for (Jogo jogo : listQuina) {
+
+			int contador = 0;
+
+			contador = counter(jogo, gameUsuario, contador, total);
+
+			if (contador >= 2) {
+
+				String idx = jogo.getIdx();
+				String date = jogo.getDate();
+
+				view.printMsgAcertos(idx, date, contador);
+
+			}
+
+			contador = 0;
+
+		}
+
+	}
+
+	public void conferiJogoLoto(List<Jogo> listLoto, View view, Scanner scanner) {
+
+		int total = 15;
+
+		view.printSolicitaJogo();
+		DecimalFormat format = new DecimalFormat("00");
+		List<String> gameUsuario = new ArrayList<>();
+
+		for (int i = 0; i < 6; i++) {
+			int num = readInt(scanner);
+			String formatted = format.format(num);
+			gameUsuario.add(formatted);
+
+		}
+
+		for (Jogo jogo : listLoto) {
+
+			int contador = 0;
+
+			contador = counter(jogo, gameUsuario, contador, total);
+
+			if (contador >= 11) {
+
+				String idx = jogo.getIdx();
+				String date = jogo.getDate();
+
+				view.printMsgAcertos(idx, date, contador);
+
+			}
+
+			contador = 0;
+
+		}
+
+	}
+
+	private int counter(Jogo jogo, List<String> gameUsuario, int contador, int total) {
+
+		for (String current : jogo.getNumbers()) {
+
+			for (int i = 0; i < total; i++) {
+
+				if (gameUsuario.get(i).equals(current)) {
+
+					contador++;
+
+				}
+
+			}
+
+		}
+
+		return contador;
 
 	}
 
