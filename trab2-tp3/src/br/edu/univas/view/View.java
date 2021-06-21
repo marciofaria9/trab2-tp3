@@ -85,8 +85,6 @@ public class View {
 
 	public void printCincoMaisMega(List<ContadorN> valores) {
 
-		
-		
 		System.out.println("Os Cinco número que mais saíram são:\n");
 		for (int i = 0; i <= 4; i++) {
 
@@ -97,10 +95,9 @@ public class View {
 		System.out.println("");
 
 	}
-public void printCincoMenosMega(List<ContadorN> valores) {
 
-		
-		
+	public void printCincoMenosMega(List<ContadorN> valores) {
+
 		System.out.println("Os Cinco número que menos saíram são:\n");
 		for (int i = 55; i <= 59; i++) {
 
@@ -111,61 +108,71 @@ public void printCincoMenosMega(List<ContadorN> valores) {
 		System.out.println("");
 
 	}
-public void printCincoMaisQuina(List<ContadorN> valores) {
 
-	
-	
-	System.out.println("Os Cinco número que mais saíram são:\n");
-	for (int i = 0; i <= 4; i++) {
+	public void printCincoMaisQuina(List<ContadorN> valores) {
 
-		System.out.print(valores.get(i).getNum() + " ");
+		System.out.println("Os Cinco número que mais saíram são:\n");
+		for (int i = 0; i <= 4; i++) {
 
-	}
+			System.out.print(valores.get(i).getNum() + " ");
 
-	System.out.println("");
+		}
 
-}
-public void printCincoMenosQuina(List<ContadorN> valores) {
-
-	
-	
-	System.out.println("Os Cinco número que menos saíram são:\n");
-	for (int i = 75; i <= 79; i++) {
-
-		System.out.print(valores.get(i).getNum() + " ");
+		System.out.println("");
 
 	}
 
-	System.out.println("");
+	public void printCincoMenosQuina(List<ContadorN> valores) {
 
-}
-public void printCincoMaisLoto(List<ContadorN> valores) {
+		System.out.println("Os Cinco número que menos saíram são:\n");
+		for (int i = 75; i <= 79; i++) {
 
-	
-	
-	System.out.println("Os Cinco número que mais saíram são:\n");
-	for (int i = 0; i <= 4; i++) {
+			System.out.print(valores.get(i).getNum() + " ");
 
-		System.out.print(valores.get(i).getNum() + " ");
+		}
 
-	}
-
-	System.out.println("");
-
-}
-public void printCincoMenosLoto(List<ContadorN> valores) {
-
-	
-	
-	System.out.println("Os Cinco número que menos saíram são:\n");
-	for (int i = 20; i <= 24; i++) {
-
-		System.out.print(valores.get(i).getNum() + " ");
+		System.out.println("");
 
 	}
 
-	System.out.println("");
+	public void printCincoMaisLoto(List<ContadorN> valores) {
 
-}
+		System.out.println("Os Cinco número que mais saíram são:\n");
+		for (int i = 0; i <= 4; i++) {
 
+			System.out.print(valores.get(i).getNum() + " ");
+
+		}
+
+		System.out.println("");
+
+	}
+
+	public void printCincoMenosLoto(List<ContadorN> valores) {
+
+		System.out.println("Os Cinco número que menos saíram são:\n");
+		for (int i = 20; i <= 24; i++) {
+
+			System.out.print(valores.get(i).getNum() + " ");
+
+		}
+
+		System.out.println("");
+
+	}
+
+	public void printMega() {
+		System.out.println("*****MEGA-SENA*****\n");
+	}
+
+	public void printQuina() {
+		System.out.println("*****QUINA*****\n");
+	}
+
+	public void printLoto() {
+		System.out.println("*****LOTO-FÁCIL*****\n");
+	}
+	public void msgNumeroInvalido() {
+		System.out.println("Digite um número válido!\n");
+	}
 }

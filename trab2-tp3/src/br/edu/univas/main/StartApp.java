@@ -54,25 +54,28 @@ public class StartApp {
 
 			view.printMenu();
 			choice = readInt(scanner);
-			if (choice != 1 && choice != 2 && choice != 3 && choice != 9) {
-				System.out.println("Digite um número válido!\n");
+			if (validaChoiceMenu(choice, view)) {
 				continue;
+
 			}
 
 			if (choice == 1) { // mega
+				view.printMega();
 				view.printSubMenu();
 				choice = readInt(scanner);
-				if (choice != 1 && choice != 2 && choice != 3 && choice != 4) {
-					System.out.println("Digite um número válido!\n");
-					continue;
-				}
 
+				if (validaChoiceSubMenu(choice, view)) {
+					continue;
+
+				}
 				if (choice == 1) {
 					cincoMega(ListSena, view, choice);
+					continue;
 				}
 
 				if (choice == 2) {
 					cincoMega(ListSena, view, choice);
+					continue;
 				}
 
 				if (choice == 3) {
@@ -89,20 +92,24 @@ public class StartApp {
 			}
 
 			if (choice == 2) { // quina
+				view.printQuina();
 				view.printSubMenu();
 				choice = readInt(scanner);
-				if (choice != 1 && choice != 2 && choice != 3 && choice != 4) {
-					System.out.println("Digite um número válido!\n");
+
+				if (validaChoiceSubMenu(choice, view)) {
 					continue;
+
 				}
 
 				if (choice == 1) {
-					cincoLoto(ListSena, view, choice);
+					cincoQuina(ListQuina, view, choice);
+					continue;
 
 				}
 
 				if (choice == 2) {
-					cincoLoto(ListSena, view, choice);
+					cincoQuina(ListQuina, view, choice);
+					continue;
 				}
 
 				if (choice == 3) {
@@ -119,19 +126,23 @@ public class StartApp {
 			}
 
 			if (choice == 3) { // loto
+				view.printLoto();
 				view.printSubMenu();
 				choice = readInt(scanner);
-				if (choice != 1 && choice != 2 && choice != 3 && choice != 4) {
-					System.out.println("Digite um número válido!\n");
+
+				if (validaChoiceSubMenu(choice, view)) {
 					continue;
+
 				}
 
 				if (choice == 1) {
-
+					cincoLoto(ListLoto, view, choice);
+					continue;
 				}
 
 				if (choice == 2) {
-
+					cincoLoto(ListLoto, view, choice);
+					continue;
 				}
 
 				if (choice == 3) {
@@ -557,6 +568,7 @@ public class StartApp {
 		}
 
 	}
+
 	public void cincoLoto(List<Jogo> listLoto, View view, int idx) {
 
 		DecimalFormat df = new DecimalFormat("00");
@@ -611,8 +623,86 @@ public class StartApp {
 
 			view.printCincoMenosLoto(todosOsValoresPossiveis);
 		}
-		
-		
+
+	}
+
+	public void cincoQuina(List<Jogo> listQuina, View view, int idx) {
+
+		DecimalFormat df = new DecimalFormat("00");
+		List<ContadorN> todosOsValoresPossiveis = new ArrayList<>();
+
+		for (int i = 0; i < 80; i++) {
+
+			ContadorN num = new ContadorN();
+			String a = df.format(i + 1);
+			num.setNum(a);
+
+			todosOsValoresPossiveis.add(num);
+
 		}
+
+		List<String> todosOsSorteados = new ArrayList<>();
+
+		for (Jogo jogo : listQuina) {
+
+			for (int i = 0; i < jogo.getNumbers().size(); i++) {
+
+				String num = jogo.getNumbers().get(i);
+
+				todosOsSorteados.add(num);
+
+			}
+
+		}
+
+		for (int i = 0; i < 80; i++) {
+
+			for (int j = 0; j < todosOsSorteados.size(); j++) {
+
+				if (todosOsSorteados.get(j).equals(todosOsValoresPossiveis.get(i).getNum())) {
+
+					todosOsValoresPossiveis.get(i).contar();
+
+				}
+
+			}
+
+		}
+
+		Collections.sort(todosOsValoresPossiveis);
+
+		if (idx == 1) {
+
+			view.printCincoMaisQuina(todosOsValoresPossiveis);
+		}
+
+		else {
+
+			view.printCincoMenosQuina(todosOsValoresPossiveis);
+		}
+
+	}
+
+	public boolean validaChoiceMenu(int choice, View view) {
+
+		if (choice != 1 && choice != 2 && choice != 3 && choice != 9) {
+			view.msgNumeroInvalido();
+			return true;
+		}
+
+		return false;
+
+	}
+
+	public boolean validaChoiceSubMenu(int choice, View view) {
+
+		if (choice != 1 && choice != 2 && choice != 3 && choice != 4) {
+			view.msgNumeroInvalido();
+			return true;
+		}
+
+		return false;
+
+	}
 
 }
