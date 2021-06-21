@@ -1,7 +1,6 @@
 package br.edu.univas.main;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -9,10 +8,17 @@ import java.io.IOException;
 import java.io.Reader;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+
+
 import java.util.List;
+
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.TreeMap;
 import java.util.TreeSet;
+
 
 import br.edu.univas.view.View;
 import br.edu.univas.vo.Jogo;
@@ -63,7 +69,7 @@ public class StartApp {
 				}
 
 				if (choice == 1) {
-
+					cincoMais(ListSena, view);
 				}
 
 				if (choice == 2) {
@@ -491,6 +497,53 @@ public class StartApp {
 		}
 
 		return contador;
+
+	}
+
+	public void cincoMais(List<Jogo> listSena, View view) {
+
+		DecimalFormat formatter = new DecimalFormat("00");
+		List<String> formated = new ArrayList<>();
+		int total = 0;
+
+		List<String> valores = new ArrayList<>();
+
+		for (Jogo jogo : ListSena) {
+
+			for (int i = 0; i < jogo.getNumbers().size(); i++) {
+
+				valores.add(jogo.getNumbers().get(i));
+
+			}
+
+		}
+
+		for (int i = 0; i < 60; i++) {
+
+			String string = formatter.format(i + 1);
+			String aux = string;
+			valores.add(aux);
+
+		}
+
+		for (Jogo jogo : listSena) {
+
+			for (String a : jogo.getNumbers()) {
+
+				for (int i = 0; i < 60; i++) {
+
+					if (a.equals(valores.get(i))) {
+						
+						
+					
+
+					}
+
+				}
+
+			}
+
+		}
 
 	}
 
