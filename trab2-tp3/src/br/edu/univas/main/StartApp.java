@@ -10,7 +10,6 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 
-
 import java.util.List;
 
 import java.util.Random;
@@ -19,8 +18,8 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-
 import br.edu.univas.view.View;
+import br.edu.univas.vo.ContadorN;
 import br.edu.univas.vo.Jogo;
 import br.edu.univas.vo.LotoFacil;
 import br.edu.univas.vo.MegaSena;
@@ -69,11 +68,11 @@ public class StartApp {
 				}
 
 				if (choice == 1) {
-					cincoMais(ListSena, view);
+					cincoMega(ListSena, view, choice);
 				}
 
 				if (choice == 2) {
-
+					cincoMega(ListSena, view, choice);
 				}
 
 				if (choice == 3) {
@@ -98,11 +97,12 @@ public class StartApp {
 				}
 
 				if (choice == 1) {
+					cincoLoto(ListSena, view, choice);
 
 				}
 
 				if (choice == 2) {
-
+					cincoLoto(ListSena, view, choice);
 				}
 
 				if (choice == 3) {
@@ -500,19 +500,30 @@ public class StartApp {
 
 	}
 
-	public void cincoMais(List<Jogo> listSena, View view) {
+	public void cincoMega(List<Jogo> listSena, View view, int idx) {
 
-		DecimalFormat formatter = new DecimalFormat("00");
-		List<String> formated = new ArrayList<>();
-		int total = 0;
+		DecimalFormat df = new DecimalFormat("00");
+		List<ContadorN> todosOsValoresPossiveis = new ArrayList<>();
 
-		List<String> valores = new ArrayList<>();
+		for (int i = 0; i < 60; i++) {
 
-		for (Jogo jogo : ListSena) {
+			ContadorN num = new ContadorN();
+			String a = df.format(i + 1);
+			num.setNum(a);
+
+			todosOsValoresPossiveis.add(num);
+
+		}
+
+		List<String> todosOsSorteados = new ArrayList<>();
+
+		for (Jogo jogo : listSena) {
 
 			for (int i = 0; i < jogo.getNumbers().size(); i++) {
 
-				valores.add(jogo.getNumbers().get(i));
+				String num = jogo.getNumbers().get(i);
+
+				todosOsSorteados.add(num);
 
 			}
 
@@ -520,24 +531,11 @@ public class StartApp {
 
 		for (int i = 0; i < 60; i++) {
 
-			String string = formatter.format(i + 1);
-			String aux = string;
-			valores.add(aux);
+			for (int j = 0; j < todosOsSorteados.size(); j++) {
 
-		}
+				if (todosOsSorteados.get(j).equals(todosOsValoresPossiveis.get(i).getNum())) {
 
-		for (Jogo jogo : listSena) {
-
-			for (String a : jogo.getNumbers()) {
-
-				for (int i = 0; i < 60; i++) {
-
-					if (a.equals(valores.get(i))) {
-						
-						
-					
-
-					}
+					todosOsValoresPossiveis.get(i).contar();
 
 				}
 
@@ -545,6 +543,76 @@ public class StartApp {
 
 		}
 
+		Collections.sort(todosOsValoresPossiveis);
+
+		if (idx == 1) {
+
+			view.printCincoMaisMega(todosOsValoresPossiveis);
+		}
+
+		else {
+
+			view.printCincoMenosMega(todosOsValoresPossiveis);
+
+		}
+
 	}
+	public void cincoLoto(List<Jogo> listLoto, View view, int idx) {
+
+		DecimalFormat df = new DecimalFormat("00");
+		List<ContadorN> todosOsValoresPossiveis = new ArrayList<>();
+
+		for (int i = 0; i < 25; i++) {
+
+			ContadorN num = new ContadorN();
+			String a = df.format(i + 1);
+			num.setNum(a);
+
+			todosOsValoresPossiveis.add(num);
+
+		}
+
+		List<String> todosOsSorteados = new ArrayList<>();
+
+		for (Jogo jogo : listLoto) {
+
+			for (int i = 0; i < jogo.getNumbers().size(); i++) {
+
+				String num = jogo.getNumbers().get(i);
+
+				todosOsSorteados.add(num);
+
+			}
+
+		}
+
+		for (int i = 0; i < 25; i++) {
+
+			for (int j = 0; j < todosOsSorteados.size(); j++) {
+
+				if (todosOsSorteados.get(j).equals(todosOsValoresPossiveis.get(i).getNum())) {
+
+					todosOsValoresPossiveis.get(i).contar();
+
+				}
+
+			}
+
+		}
+
+		Collections.sort(todosOsValoresPossiveis);
+
+		if (idx == 1) {
+
+			view.printCincoMaisLoto(todosOsValoresPossiveis);
+		}
+
+		else {
+
+			view.printCincoMenosLoto(todosOsValoresPossiveis);
+		}
+		
+		
+		}
 
 }
